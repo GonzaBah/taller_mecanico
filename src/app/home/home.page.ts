@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { AnimationController, ToastController } from '@ionic/angular';
+import {  AnimationController, AlertController, Platform, ToastController } from '@ionic/angular';
 import { SqliteService } from '../services/sqlite.service';
 
 @Component({
@@ -9,30 +9,36 @@ import { SqliteService } from '../services/sqlite.service';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage implements OnInit{
-  
-
-
-
-  //Usuarios predefinidos
-  usuario1: any[] = ["user@mail.com", "1234", false, "User Name", "+12345678", "111-1", "01-20"];
-  usuario2: any[] = ["chimba@rongo.com", "chimba", true, "Chimba Rongo", "+569 Peor es Nada", "222-2", "02-20"];
+password:string;
+correo:string;
 
   varProg: boolean = false;
+  users: any = [
+    {
+      id_usuario: '',
+      correo: '',
+      clave: '',
 
-  usuario: string = "";
-  contrasenia: string = "";
-  afilState: boolean = false;
-  nombre: string = "";
-  telefono: string = "";
-  rut: string = "";
+      rut: '',
+      rol_id: ''
+    }
+  ]
 
-  
-
-  constructor(public toastController: ToastController, private router: Router, private animationCtrl: AnimationController, private wayplaceDB: SqliteService) {
+  constructor(public toastController: ToastController, private router: Router, private animationCtrl: AnimationController, private dbService: SqliteService, private alertController: AlertController,) {
     
   }
 
-  ngOnInit(): void {
+  ngOnInit(){
+   this.dbService.dbState().subscribe(res => {
+      if (res) {
+        this.dbService.fetchUsers().subscribe(item => {
+          this.users = item;
+        }
+        )
+
+      }
+    })
+
   }
   
   async inicioToast(var1: string){
@@ -42,69 +48,47 @@ export class HomePage implements OnInit{
     });
     toast.present();
   }
-  
-  async errorToast(){
-    const toast = await this.toastController.create({
-      message: 'Correo o Contraseña invalido',
-      duration: 2000
-    });
-    toast.present();
-  }
-  async login(){
-    const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
-    this.varProg = true;
-    await sleep(1500);
-    if (this.usuario == this.usuario1[0] && this.contrasenia == this.usuario1[1]){
-        console.log("Sesion iniciada " + this.usuario)
-        this.nombre = this.usuario1[3];
-        this.telefono = this.usuario1[4];
-        this.rut = this.usuario1[5];
-        if (this.usuario1[2] == "0"){
-          this.afilState = false;
-        }else{
-          this.afilState = true;
-        }
-        let navigationExtras: NavigationExtras = {
-          state: {
-            user: this.usuario,
-            pass: this.contrasenia,
-            afil: this.afilState,
-            name: this.nombre,
-            fono: this.telefono,
-            rut: this.rut,
-          }
-        }
-        
-        this.inicioToast(this.nombre);
-        this.router.navigate(['/principal'], navigationExtras);
-    
-    }else if(this.usuario == this.usuario2[0] && this.contrasenia == this.usuario2[1]){
-        console.log("Sesion iniciada " + this.usuario)
-        this.nombre = this.usuario2[3];
-        this.telefono = this.usuario2[4];
-        this.rut = this.usuario2[5];
-        if (this.usuario2[2] == "0"){
-          this.afilState = false;
-        }else{
-          this.afilState = true;
-        }
-        let navigationExtras: NavigationExtras = {
-          state: {
-            user: this.usuario,
-            pass: this.contrasenia,
-            afil: this.afilState,
-            name: this.nombre,
-            fono: this.telefono,
-            rut: this.rut,
-          }
-        }
-        
-        this.inicioToast(this.nombre);
-        this.router.navigate(['/principal'], navigationExtras);
-    }else{
-      this.errorToast();
+ sendData() {
+    let counter: number = 0;
+    this.users.forEach(count);
+    function count() {
+      counter += 1;
     }
-    this.varProg = false;
+    for (let u in this.users) {
+      if (this.users[u].correo == this.correo && this.users[u].clave == this.password) {
+        if (this.users[u].rol_id == 1) {
+
+        this.presentToast("empleados no implementados!");
+        }
+        else if (this.users[u].rol_id == 2) {
+
+          this.router.navigate(['/paginaprincipal']);
+        }
+      } else {
+        counter -= 1;
+      }
+      if (counter == 0) {
+        this.presentToast("Usuario o contraseña incorrectos.");
+      }
+    }
+
+  }
+  async presentToast(msj: string) {
+    const toast = await this.toastController.create({
+      message: msj,
+      duration: 3000,
+      icon: 'globe'
+    });
+
+    await toast.present();
+  }
+  async presentAlert(msj: string) {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      message: msj,
+      buttons: ['OK'],
+    });
+
+    await alert.present();
   }
 }
-
