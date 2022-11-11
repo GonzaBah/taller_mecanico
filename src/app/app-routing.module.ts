@@ -37,7 +37,11 @@ const routes: Routes = [
   {
     path: 'billetera',
     loadChildren: () => import('./pages/billetera/billetera.module').then( m => m.BilleteraPageModule)
+  },  {
+    path: 'pagina-empleado',
+    loadChildren: () => import('./pages/pagina-empleado/pagina-empleado.module').then( m => m.PaginaEmpleadoPageModule)
   },
+
 ];
 
 @NgModule({
