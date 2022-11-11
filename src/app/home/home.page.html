@@ -3,10 +3,10 @@
     <img style="margin-top: -20px;" src="assets/images/logo3.png" alt="">
 
     <ion-card style="margin-top: 0px;">
-      <ion-input [(ngModel)]="usuario" type="email" placeholder="Correo"></ion-input>
+      <ion-input [(ngModel)]="correo" type="email" placeholder="Correo"></ion-input>
     </ion-card>
     <ion-card style="margin-bottom: 0px;">
-      <ion-input [(ngModel)]="contrasenia" type="password" placeholder="Contraseña"></ion-input>
+      <ion-input [(ngModel)]="password" type="password" placeholder="Contraseña"></ion-input>
     </ion-card>
 
     <div class='test' style="margin-top: 10px;">
@@ -15,7 +15,7 @@
         </ion-button>
       </div>
       <div style='float: right; margin-right: 10px;'>
-        <ion-button color="warning"  style="font-size: 90%;" size="default" (click)="login()">Enviar</ion-button>
+        <ion-button color="warning"  style="font-size: 90%;" size="default" (click)="sendData()">Enviar</ion-button>
       </div>
     </div>
 

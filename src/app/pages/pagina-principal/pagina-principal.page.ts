@@ -20,35 +20,8 @@ export class PaginaPrincipalPage implements OnInit {
 
   
   constructor(private menuController: MenuController, private router: Router, private activedRouter: ActivatedRoute, private GeoLocalizacion: Geolocation) {
-    this.activedRouter.queryParams.subscribe(params =>{
-      if(!this.router.getCurrentNavigation().extras.state.user && this.router.getCurrentNavigation().extras.state.afil){
-        this.a = this.router.getCurrentNavigation().extras.state.afil;
-      }
-      else if(this.router.getCurrentNavigation().extras.state){
-        this.u = this.router.getCurrentNavigation().extras.state.user;
-        this.p = this.router.getCurrentNavigation().extras.state.pass;
-        this.a = this.router.getCurrentNavigation().extras.state.afil;
-        this.n = this.router.getCurrentNavigation().extras.state.name;
-        this.f = this.router.getCurrentNavigation().extras.state.fono;
-        this.r = this.router.getCurrentNavigation().extras.state.rut;
-        this.fe = this.router.getCurrentNavigation().extras.state.fech;
-      }
-    })
+    
    }
-  abrirPerfil(){
-    let navigationExtras: NavigationExtras = {
-      state: {
-        user: this.u,
-        pass: this.p,
-        afil: this.a,
-        name: this.n,
-        fono: this.f,
-        rut: this.r,
-        fech: this.fe
-      }
-    }
-    this.router.navigate(['/perfil'], navigationExtras);
-  }
   cardClick(){
     console.log("btn Clicked");
     alert("THE GAME")
