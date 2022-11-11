@@ -54,7 +54,12 @@ export class PaginaPrincipalPage implements OnInit {
     alert("THE GAME")
   }
 
+  abrirPagEmpleado(){
+    this.router.navigate(["/pagina-empleado"]);
+  }
+
   ngOnInit() {
   }
+
 
 }
