@@ -1,0 +1,27 @@
+<ion-content [fullscreen]="true">
+  <div id="container">
+    <img style="margin-top: -20px;" src="" alt="">
+
+    <ion-card style="margin-top: 0px;">
+      <ion-input [(ngModel)]="usuario" type="email" placeholder="Correo"></ion-input>
+    </ion-card>
+    <ion-card style="margin-bottom: 0px;">
+      <ion-input [(ngModel)]="contrasenia" type="password" placeholder="Contraseña"></ion-input>
+    </ion-card>
+
+    <div class='test'>
+      <div style='float: left; margin-left: 10px;'>
+        <ion-button color="dark" style="font-size: 90%; " size="default" [routerLink]="['/registrarse']">Registrarse
+        </ion-button>
+      </div>
+      <div style='float: right; margin-right: 10px;'>
+        <ion-button color="dark" style="font-size: 90%;" size="default" (click)="login()">Enviar</ion-button>
+      </div>
+    </div>
+
+    <center>
+      <mat-progress-bar style="margin-top: 100px" *ngIf="varProg == 1" mode="indeterminate"></mat-progress-bar>
+    </center>
+
+  </div>
+</ion-content>
