@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>reserva-hora</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="text-align: center">
+    <ion-select placeholder="Selecciona el Servicio">
+      <ion-select-option value="aceite">Cambio de aceite</ion-select-option>
+      <ion-select-option value="check">Chequeo</ion-select-option>
+      <ion-select-option value="pintura">Pintura</ion-select-option>
+      <ion-select-option value="bateria">Cambio de batería</ion-select-option>
+      <ion-select-option value="limpieza">Limpieza profunda</ion-select-option>
+    </ion-select>
+    <ion-label>Fecha y Hora</ion-label>
+    <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </div>
+
+</ion-content>

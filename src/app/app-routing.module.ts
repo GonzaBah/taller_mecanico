@@ -37,7 +37,11 @@ const routes: Routes = [
   {
     path: 'billetera',
     loadChildren: () => import('./pages/billetera/billetera.module').then( m => m.BilleteraPageModule)
+  },  {
+    path: 'reserva-hora',
+    loadChildren: () => import('./pages/reserva-hora/reserva-hora.module').then( m => m.ReservaHoraPageModule)
   },
+
 ];
 
 @NgModule({

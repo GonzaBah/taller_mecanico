@@ -21,6 +21,7 @@ export class SqliteService {
   //String para pobrar tablas
   RolPasaj: string = "insert or ignore into rol(nombreRol) values('Pasajero');";
   RolAfil: string = "insert or ignore into rol(nombreRol) values('Afiliado');";
+  
   constructor(public sql: SQLite, private platform: Platform) { 
     this.platform.ready().then(() => {
       this.crearDB();
