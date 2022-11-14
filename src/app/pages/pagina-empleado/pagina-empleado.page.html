@@ -1,9 +1,55 @@
 <ion-header>
   <ion-toolbar>
     <ion-title></ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div class="header">
+    <div class="avatar">
+      <ion-img src="assets\images\noperfil.jpg" class="fotoperfil"></ion-img>
+    </div>
+    <h5 style="margin-right: 5px;">{{ n }}</h5>
+
+    
+  </div>
+
+  <div class="categories">
+
+    <div class="wrapper" [routerLink]="['']">
+      <div class="image-card">
+        <ion-img src="assets\images\taller8.png"></ion-img>
+      </div>
+      <p class="ion-no-margin">Pedido Proveedor</p>
+      
+    </div>
+
+    <div class="wrapper" [routerLink]="['']">
+      <div class="image-card">
+        <ion-img src="assets\images\taller6.png"></ion-img>
+      </div>
+      <p class="ion-no-margin">Recepción Productos</p>
+      
+    </div>
+    <div class="wrapper" [routerLink]="['']">
+      <div class="image-card">
+        <ion-img src="assets\images\taller9.png"></ion-img>
+      </div>
+      <p class="ion-no-margin">Boletas</p>
+      
+    </div>
+    <div class="wrapper"></div>
+    <div class="wrapper" [routerLink]="['']">
+      <div class="image-card">
+        <ion-img src="assets\images\taller10.png"></ion-img>
+      </div>
+      <p class="ion-no-margin">Informes y estadísticas</p>
+      
+    </div>
+  </div>
+  <hr>
 
 </ion-content>

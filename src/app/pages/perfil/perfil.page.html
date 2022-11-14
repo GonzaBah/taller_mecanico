@@ -14,7 +14,7 @@
       
     </div>
     <h5 style="margin-right: 5px;">{{ n }}</h5>
-    <ion-icon (click)="editarPerfil()" style="cursor: pointer;" size="small" name="create-outline"></ion-icon>
+    <ion-icon [routerLink]="['/configuracion']" (click)="editarPerfil()" style="cursor: pointer;" size="small" name="create-outline"></ion-icon>
   </div>
 
   <div class="categories">
