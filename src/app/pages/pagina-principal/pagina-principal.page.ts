@@ -10,6 +10,7 @@ import { Geolocation } from '@awesome-cordova-plugins/geolocation/ngx';
 })
 
 export class PaginaPrincipalPage implements OnInit {
+  
   u: string = "";
   p: string = "";
   a: boolean = false;
@@ -35,20 +36,6 @@ export class PaginaPrincipalPage implements OnInit {
       }
     })
    }
-  abrirPerfil(){
-    let navigationExtras: NavigationExtras = {
-      state: {
-        user: this.u,
-        pass: this.p,
-        afil: this.a,
-        name: this.n,
-        fono: this.f,
-        rut: this.r,
-        fech: this.fe
-      }
-    }
-    this.router.navigate(['/perfil'], navigationExtras);
-  }
   cardClick(){
     console.log("btn Clicked");
     alert("THE GAME")
@@ -59,6 +46,7 @@ export class PaginaPrincipalPage implements OnInit {
   }
 
   ngOnInit() {
+
   }
 
 

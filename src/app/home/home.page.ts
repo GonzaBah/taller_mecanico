@@ -13,7 +13,7 @@ password:string;
 correo:string;
 
   varProg: boolean = false;
-  users: any = [
+  users: any[] = [
     {
       id_usuario: '',
       correo: '',
@@ -48,29 +48,45 @@ correo:string;
     });
     toast.present();
   }
- sendData() {
-    let counter: number = 0;
-    this.users.forEach(count);
-    function count() {
-      counter += 1;
-    }
-    for (let u in this.users) {
-      if (this.users[u].correo == this.correo && this.users[u].clave == this.password) {
-        if (this.users[u].rol_id == 1) {
-
-        this.presentToast("empleados no implementados!");
-        }
-        else if (this.users[u].rol_id == 2) {
-
-          this.router.navigate(['/paginaprincipal']);
-        }
-      } else {
-        counter -= 1;
-      }
-      if (counter == 0) {
-        this.presentToast("Usuario o contraseña incorrectos.");
+ async sendData() {
+    let ini = 0;
+    for(let i of this.users){
+      if(this.correo == i.correo && this.password == i.clave){
+        this.inicioToast(i.nombre);
+        await this.router.navigate(['/principal']);
+        ini++;
+        break;
+      }else{
+        console.log("Siguiente Usuario", i.clave);
       }
     }
+    if (ini == 0){
+      this.presentToast("Usuario no encontrado");
+    }
+
+    
+    // let counter: number = 0;
+    // this.users.forEach(count);
+    // function count() {
+    //   counter += 1;
+    // }
+    // for (let u in this.users) {
+    //   if (this.users[u].correo == this.correo && this.users[u].clave == this.password) {
+    //     if (this.users[u].rol_id == 1) {
+
+    //     this.presentToast("empleados no implementados!");
+    //     }
+    //     else if (this.users[u].rol_id == 2) {
+
+    //       this.router.navigate(['/paginaprincipal']);
+    //     }
+    //   } else {
+    //     counter -= 1;
+    //   }
+    //   if (counter == 0) {
+    //     this.presentToast("Usuario o contraseña incorrectos.");
+    //   }
+    // }
 
   }
   async presentToast(msj: string) {

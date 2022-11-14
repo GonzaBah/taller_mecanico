@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div style="text-align: center">
+    <ion-select placeholder="Selecciona el Servicio">
+      <ion-select-option *ngFor = "let i of servicios" value="{{ i.id_servicio }}">{{ i.nombreServicio }}</ion-select-option>
+    </ion-select>
+    <ion-label>Fecha y Hora</ion-label>
+    <ion-datetime-button datetime="datetime"></ion-datetime-button>
+
+    <ion-button>Reservar</ion-button>
+
+    <ion-modal [keepContentsMounted]="true">
+      <ng-template>
+        <ion-datetime id="datetime"></ion-datetime>
+      </ng-template>
+    </ion-modal>
+  </div>
+
+</ion-content>
